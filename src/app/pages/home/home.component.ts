@@ -15,7 +15,7 @@ export class HomeComponent implements OnInit {
   ngOnInit() {
   }
 
-  salir(){
+  salir() {
     this.auth.logout();
     this.router.navigateByUrl('/login');
   }

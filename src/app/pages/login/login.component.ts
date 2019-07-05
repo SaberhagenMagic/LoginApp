@@ -14,7 +14,7 @@ import { AuthService } from '../../services/auth.service';
 export class LoginComponent implements OnInit {
 
   usuario: UsuarioModel = new UsuarioModel();
-  rememberme: boolean = false;
+  rememberme = false;
 
   constructor(private auth: AuthService,
               private router: Router) { }
@@ -27,7 +27,7 @@ export class LoginComponent implements OnInit {
   }
 
   login( form: NgForm) {
-    if( form.invalid ) { return; }
+    if ( form.invalid ) { return; }
     // console.log('Imprimir si el formulario es valido');
     // console.log(this.usuario);
 
@@ -41,10 +41,10 @@ export class LoginComponent implements OnInit {
     this.auth.login( this.usuario ).subscribe( response => {
       console.log(response);
       Swal.close();
-      if(this.rememberme) {
+      if (this.rememberme) {
         localStorage.setItem('email',this.usuario.email);
       }
-      
+
       this.router.navigateByUrl('/home');
     }, (err) => {
       console.error(err.error.error.message);

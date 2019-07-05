@@ -42,7 +42,7 @@ export class AuthService {
     );
   }
 
-  newUser(usuario: UsuarioModel){
+  newUser(usuario: UsuarioModel) {
     // const authData = {
     //   email: usuario.email,
     //   password: usuario.password,
@@ -65,13 +65,18 @@ export class AuthService {
     );
   }
 
-  private saveToken(idToken: string){
+  private saveToken(idToken: string) {
     this.userToken = idToken;
     localStorage.setItem('token', idToken);
+
+    let hoy = new Date();
+    hoy.setSeconds( 3600 ); // 3600 valor por default del token
+
+    localStorage.setItem('expira', hoy.getTime().toString());
   }
 
-  loadToken(){
-    if(localStorage.getItem('token')){
+  loadToken() {
+    if (localStorage.getItem('token')) {
       this.userToken = localStorage.getItem('token');
     } else {
       this.userToken = '';
@@ -81,6 +86,20 @@ export class AuthService {
   }
 
   statusAuntenticate(): boolean {
-    return this.userToken.length > 2;
+    // return this.userToken.length > 2;
+
+    if ( this.userToken.length > 2 ) {
+      return false;
+    }
+
+    const expira = Number(localStorage.getItem('expira'));
+    const expiraDate = new Date();
+    if ( expiraDate > new Date() ) {
+      return true;
+    } else {
+      return false;
+    }
+
+
   }
 }
