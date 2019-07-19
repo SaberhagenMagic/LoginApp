@@ -20,7 +20,7 @@ export class LoginComponent implements OnInit {
               private router: Router) { }
 
   ngOnInit() {
-    if(localStorage.getItem('email')) {
+    if (localStorage.getItem('email')) {
       this.usuario.email = localStorage.getItem('email');
       this.rememberme = true;
     }
@@ -42,7 +42,7 @@ export class LoginComponent implements OnInit {
       console.log(response);
       Swal.close();
       if (this.rememberme) {
-        localStorage.setItem('email',this.usuario.email);
+        localStorage.setItem('email', this.usuario.email);
       }
 
       this.router.navigateByUrl('/home');

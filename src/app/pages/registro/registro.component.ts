@@ -27,7 +27,7 @@ export class RegistroComponent implements OnInit {
 
   onSubmit( form: NgForm ) {
 
-    if( form.invalid ) { return; }
+    if ( form.invalid ) { return; }
 
     // console.log('Formulario enviado');
     // console.log(this.usuario);
@@ -44,7 +44,7 @@ export class RegistroComponent implements OnInit {
       console.log(response);
       Swal.close();
 
-      if(this.rememberme) {
+      if (this.rememberme) {
         localStorage.setItem('email',this.usuario.email);
       }
 
